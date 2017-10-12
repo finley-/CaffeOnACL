@@ -3,6 +3,8 @@
 # CaffeOnACL
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
 
+Support Android platform.
+
 CaffeOnACL is a project that is maintained by **OPEN** AI LAB, it uses Arm Compute Library (NEON+GPU) to speed up [Caffe](http://caffe.berkeleyvision.org/) and provide utilities to debug, profile and tune application performance. 
 
 The release version is 0.4.0, is based on [Rockchip RK3399](http://www.rock-chips.com/plus/3399.html) Platform, target OS is Ubuntu 16.04. Can download the source code from [OAID/CaffeOnACL](https://github.com/OAID/CaffeOnACL)

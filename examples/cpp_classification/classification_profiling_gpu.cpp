@@ -193,17 +193,19 @@ std::vector<float> Classifier::Predict(const cv::Mat& img) {
 
   Preprocess(img, &input_channels);
 
+  net_->Forward();
+
 #ifdef USE_PROFILING
   unsigned long tstart=get_cur_time();
 #endif //USE_PROFILING
 
-  net_->Forward();
+  for (int i=0; i<10; i++) net_->Forward();
 
 #ifdef USE_PROFILING
 
   unsigned long tend=get_cur_time();
 
-  std::cout<<"used time: "<<tend-tstart<<std::endl;
+  std::cout<<"gpu used time: "<<(tend-tstart)/10.<<"ms"<<std::endl;
 
 #ifdef LAYER_PERF_STAT
   dump_perf_stat(); 

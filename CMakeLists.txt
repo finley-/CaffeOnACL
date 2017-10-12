@@ -41,6 +41,11 @@ caffe_option(USE_LMDB "Build with lmdb" ON)
 caffe_option(ALLOW_LMDB_NOLOCK "Allow MDB_NOLOCK when reading LMDB files (only if necessary)" OFF)
 caffe_option(USE_OPENMP "Link with OpenMP (when your BLAS wants OpenMP and you get linker errors)" OFF)
 
+if(ANDROID)
+  set(CMAKE_FIND_LIBRARY_SUFFIXES ".a;.so")
+  caffe_enable_cpp11_support()
+endif()
+
 # ---[ Dependencies
 include(cmake/Dependencies.cmake)
 
@@ -90,6 +95,7 @@ add_subdirectory(src/gtest)
 add_subdirectory(src/caffe)
 add_subdirectory(tools)
 add_subdirectory(examples)
+add_subdirectory(android)
 add_subdirectory(python)
 add_subdirectory(matlab)
 add_subdirectory(docs)
