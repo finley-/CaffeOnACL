@@ -10,6 +10,10 @@ void ACLPoolingLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
     const vector<Blob<Dtype>*>& top) {
   PoolingLayer<Dtype>::LayerSetUp(bottom, top);
   this->force_bypass_acl_path_= bypass_acl_class_layer & FLAGS_ENABLE_ACL_POOLING;
+  // force bypass pooling layer on gpu mode
+  if (Caffe::arm_gpu_mode()) {
+    this->force_bypass_acl_path_ = true;
+  }
 }
 template <typename Dtype>
 void ACLPoolingLayer<Dtype>::SetupACLLayer(const vector<Blob<Dtype>*>& bottom,
